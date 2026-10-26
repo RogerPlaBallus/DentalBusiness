@@ -1,10 +1,10 @@
 # Clínica Dental Tramuntana 
 
 Fictional dental clinic in Barcelona, Catalonia. One-page marketing + booking site.
+https://rogerplaballus.github.io/DentalBusiness/
 
 ## Made with
-
-- Minimax-m3
+Minimax-m3
 
 ## Stack used
 
