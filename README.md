@@ -1,10 +1,10 @@
-# Clínica Dental Tramuntana — Single Page Website
+# Clínica Dental Tramuntana 
 
 Fictional dental clinic in Barcelona, Catalonia. One-page marketing + booking site.
 
 ## Made with
 
-- Claude Opus 4.5 (Anthropic)
+- Minimax-m3
 
 ## Stack used
 
@@ -53,4 +53,4 @@ Deploy: upload `index.html` to Netlify, Vercel, GitHub Pages or any static host.
 
 ## Made by
 
-Roger Pla Ballús with Claude Opus 4.5 (Anthropic)
+Roger Pla Ballús with Minimax-m3
