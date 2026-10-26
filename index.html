@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clínica Dental Tramuntana — Dentistry in Barcelona, Catalonia</title>
+<meta name="description" content="Fictional dental clinic in Barcelona: prevention, implants, orthodontics and cosmetic dentistry. Catalan team, English/Catalan/Spanish.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<style>
+  :root{
+    --ink:#0f1720; --bone:#f6f4ef; --teal:#0e7c86; --coral:#e2603f;
+    --amber:#e8a72c; --steel:#2b3a49; --line:#e2ded4;
+  }
+  html{scroll-behavior:smooth}
+  body{background:var(--bone);color:var(--ink);font-family:Inter,system-ui,sans-serif}
+  .display{font-family:Sora,system-ui,sans-serif;letter-spacing:-.02em}
+  .rule{height:2px;background:var(--ink)}
+  .chip{border:1px solid var(--ink);border-radius:999px}
+  .tile{background:#fff;border:1px solid var(--line)}
+  .tile:hover{border-color:var(--ink)}
+  .acc-teal{color:var(--teal)} .acc-coral{color:var(--coral)} .acc-amber{color:#a9761a}
+  .bg-teal{background:var(--teal)} .bg-coral{background:var(--coral)} .bg-amber{background:var(--amber)}
+  .bar{height:6px;width:100%;background:var(--line)}
+  .bar>span{display:block;height:100%}
+  .menu a{position:relative}
+  .menu a::after{content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;background:var(--coral);transition:right .25s ease}
+  .menu a:hover::after,.menu a:focus-visible::after{right:0}
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.menu a::after{transition:none}}
+  .tooth svg{overflow:visible}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+  input,select,textarea{font:inherit}
+</style>
+</head>
+<body class="antialiased">
+
+<!-- NAV -->
+<header class="sticky top-0 z-50 bg-[var(--bone)]/95 backdrop-blur border-b border-[var(--line)]">
+  <div class="mx-auto max-w-6xl px-5 h-16 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-3 shrink-0">
+      <span class="w-9 h-9 grid place-items-center bg-[var(--teal)] rounded-lg" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.6-1.1-3.4-1.6-5.2-1.1C4.4 5 3 7.2 3 9.6c0 3.1 1 4.9 2.2 7.6.7 1.6 1.1 3.3 2.5 3.8 1.3.5 1.9-1.1 2.3-2.4.4-1.3.8-2.5 2-2.5s1.6 1.2 2 2.5c.4 1.3 1 2.9 2.3 2.4 1.4-.5 1.8-2.2 2.5-3.8C20 14.5 21 12.7 21 9.6c0-2.4-1.4-4.6-3.8-5.2-1.8-.5-3.6 0-5.2 1.1Z"/></svg>
+      </span>
+      <span class="display font-extrabold text-[15px] leading-none">Clínica Dental<br><span class="text-[var(--teal)]">Tramuntana</span></span>
+    </a>
+
+    <nav class="menu hidden md:flex items-center gap-8 text-sm font-medium" aria-label="Main">
+      <a href="#services" class="hover:text-[var(--coral)]">Services</a>
+      <a href="#team" class="hover:text-[var(--coral)]">Team</a>
+      <a href="#clinic" class="hover:text-[var(--coral)]">Clinic</a>
+      <a href="#hours" class="hover:text-[var(--coral)]">Hours</a>
+    </nav>
+
+    <a href="#book" class="hidden sm:inline-flex items-center gap-2 bg-[var(--ink)] text-[var(--bone)] text-sm font-semibold px-4 py-2.5 rounded-lg hover:bg-[var(--teal)] transition-colors">
+      Book a visit
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+
+    <button id="burger" class="md:hidden w-10 h-10 grid place-items-center border border-[var(--line)] rounded-lg" aria-expanded="false" aria-controls="mobilenav" aria-label="Open menu">
+      <svg id="burgerIcon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav id="mobilenav" class="md:hidden hidden border-t border-[var(--line)] bg-[var(--bone)] px-5 py-4" aria-label="Mobile">
+    <ul class="space-y-3 text-[15px] font-medium">
+      <li><a href="#services" class="block py-1">Services</a></li>
+      <li><a href="#team" class="block py-1">Team</a></li>
+      <li><a href="#clinic" class="block py-1">Clinic</a></li>
+      <li><a href="#hours" class="block py-1">Hours &amp; location</a></li>
+      <li><a href="#book" class="inline-block bg-[var(--ink)] text-[var(--bone)] font-semibold px-4 py-2.5 rounded-lg mt-2">Book a visit</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="relative overflow-hidden border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 grid lg:grid-cols-12 gap-10 pt-14 pb-16 md:pt-20 md:pb-24">
+      <div class="lg:col-span-7">
+        <p class="inline-flex items-center gap-2 chip px-3 py-1.5 text-xs font-semibold tracking-wide uppercase acc-teal">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--coral)]"></span> Barcelona · Catalonia
+        </p>
+        <h1 class="display font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.05] mt-6">
+          Dentistry that<br>respects your <span class="acc-coral">time</span>.
+        </h1>
+        <p class="mt-6 text-lg text-[var(--steel)] max-w-xl">
+          A neighbourhood dental clinic in the Eixample. Prevention first, digital diagnostics, treatment plans you can read on one page.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <a href="#book" class="inline-flex items-center gap-2 bg-[var(--teal)] text-white font-semibold px-6 py-3.5 rounded-lg hover:bg-[var(--ink)] transition-colors">
+            Request an appointment
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#services" class="inline-flex items-center gap-2 border-2 border-[var(--ink)] font-semibold px-6 py-3.5 rounded-lg hover:bg-[var(--ink)] hover:text-[var(--bone)] transition-colors">
+            See services
+          </a>
+        </div>
+
+        <dl class="mt-12 grid grid-cols-3 gap-4 max-w-lg">
+          <div class="border-t-2 border-[var(--teal)] pt-3">
+            <dt class="text-xs uppercase tracking-wider text-[var(--steel)]">Since</dt>
+            <dd class="display text-2xl font-bold">2009</dd>
+          </div>
+          <div class="border-t-2 border-[var(--coral)] pt-3">
+            <dt class="text-xs uppercase tracking-wider text-[var(--steel)]">Rating</dt>
+            <dd class="display text-2xl font-bold">4.9<span class="text-[var(--amber)]">★</span></dd>
+          </div>
+          <div class="border-t-2 border-[var(--ink)] pt-3">
+            <dt class="text-xs uppercase tracking-wider text-[var(--steel)]">Chair time</dt>
+            <dd class="display text-2xl font-bold">45 min</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="lg:col-span-5 relative">
+        <div class="relative">
+          <img src="https://images.pexels.com/photos/4269265/pexels-photo-4269265.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bright treatment room with a modern dental chair" width="940" height="650" loading="lazy" class="w-full h-[360px] lg:h-[500px] object-cover rounded-2xl border border-[var(--line)]">
+          <div class="absolute -bottom-6 -left-4 sm:left-6 bg-[var(--ink)] text-[var(--bone)] rounded-xl p-5 w-56 shadow-xl">
+            <p class="text-xs uppercase tracking-wider text-[var(--amber)] font-semibold">Next opening</p>
+            <p class="display text-xl font-bold mt-1">Tomorrow, 09:30</p>
+            <p class="text-sm text-[var(--bone)]/70 mt-1">Scale &amp; polish + X-ray</p>
+          </div>
+          <div class="absolute -top-5 -right-3 w-16 h-16 bg-[var(--amber)] rounded-full grid place-items-center" aria-hidden="true">
+            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#0f1720" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v8M8.5 6.5 12 10l3.5-3.5M5 13v5a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-5"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="bg-[var(--ink)] text-[var(--bone)] overflow-hidden">
+    <div class="mx-auto max-w-6xl px-5 py-4 flex flex-wrap items-center gap-x-8 gap-y-2 text-sm font-medium">
+      <span class="text-[var(--amber)] font-semibold">Fictional demo brand</span>
+      <span>•</span><span>Languages: Catalan · Spanish · English</span>
+      <span>•</span><span>Digital intraoral scanner</span>
+      <span>•</span><span>Same-day emergency slot</span>
+      <span>•</span><span>Wheelchair accessible</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services" class="border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-20">
+      <div class="flex flex-wrap items-end justify-between gap-6 mb-12">
+        <div>
+          <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-coral">Services</p>
+          <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">What we do</h2>
+        </div>
+        <p class="text-[var(--steel)] max-w-sm">Transparent prices per treatment. Financing available up to 24 months, 0% APR.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article class="tile rounded-2xl p-7 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--teal)] grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z"/><path d="M12 15v6"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Preventive care</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-[var(--steel)]">
+            <li class="flex gap-2"><span class="acc-teal">—</span> Check-ups &amp; hygiene</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Digital X-ray &amp; panoramic scan</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Fluoride &amp; sealants</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Gum therapy</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">From €45</p>
+        </article>
+
+        <article class="tile rounded-2xl p-7 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--coral)] grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18M3 12h18"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Restorative</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-[var(--steel)]">
+            <li class="flex gap-2"><span class="acc-coral">—</span> Composite fillings</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Root canal (endodontics)</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Crowns &amp; bridges</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Night guards</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">From €120</p>
+        </article>
+
+        <article class="tile rounded-2xl p-7 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--amber)] grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f1720" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a7 7 0 1 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Implants &amp; surgery</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-[var(--steel)]">
+            <li class="flex gap-2"><span class="acc-amber">—</span> Single tooth implant</li>
+            <li class="flex gap-2"><span class="acc-amber">—</span> All-on-4 / All-on-6</li>
+            <li class="flex gap-2"><span class="acc-amber">—</span> Bone graft</li>
+            <li class="flex gap-2"><span class="acc-amber">—</span> Sinus lift</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">From €1,450</p>
+        </article>
+
+        <article class="tile rounded-2xl p-7 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--ink)] grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v16"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Orthodontics</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-[var(--steel)]">
+            <li class="flex gap-2"><span class="acc-teal">—</span> Clear aligners</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Fixed braces</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Retainers</li>
+            <li class="flex gap-2"><span class="acc-teal">—</span> Children (age 6+)</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">From €2,100</p>
+        </article>
+
+        <article class="tile rounded-2xl p-7 transition-colors">
+          <div class="w-12 h-12 rounded-xl bg-[var(--steel)] grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.4 5.1 5.6.8-4 4 .9 5.6L12 15.8 6.1 18.5 7 12.9 3 8.9l5.6-.8Z"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Cosmetic</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-[var(--steel)]">
+            <li class="flex gap-2"><span class="acc-coral">—</span> Whitening</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Veneers</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Composite bonding</li>
+            <li class="flex gap-2"><span class="acc-coral">—</span> Digital smile design</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">From €180</p>
+        </article>
+
+        <article class="rounded-2xl p-7 bg-[var(--teal)] text-white">
+          <div class="w-12 h-12 rounded-xl bg-white/15 grid place-items-center mb-5" aria-hidden="true">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          </div>
+          <h3 class="display text-xl font-bold">Emergency</h3>
+          <ul class="mt-4 space-y-2 text-[15px] text-white/90">
+            <li class="flex gap-2"><span>—</span> Same-day pain slot</li>
+            <li class="flex gap-2"><span>—</span> Trauma &amp; broken tooth</li>
+            <li class="flex gap-2"><span>—</span> Abscess drainage</li>
+            <li class="flex gap-2"><span>—</span> Weekend on-call</li>
+          </ul>
+          <p class="mt-5 text-sm font-semibold">Call the clinic</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS / PROCESS -->
+  <section class="bg-[var(--ink)] text-[var(--bone)] border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-20 grid lg:grid-cols-2 gap-14 items-center">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--amber)]">How it works</p>
+        <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Four steps, no surprises</h2>
+        <ol class="mt-9 space-y-6">
+          <li class="flex gap-5">
+            <span class="display shrink-0 w-10 h-10 rounded-lg bg-[var(--coral)] text-white grid place-items-center font-bold">1</span>
+            <div>
+              <p class="font-semibold">First visit &amp; scan</p>
+              <p class="text-white/65 text-[15px] mt-1">Interview, intraoral scan, X-ray. Written plan with fixed price.</p>
+            </div>
+          </li>
+          <li class="flex gap-5">
+            <span class="display shrink-0 w-10 h-10 rounded-lg bg-[var(--teal)] text-white grid place-items-center font-bold">2</span>
+            <div>
+              <p class="font-semibold">Quote &amp; financing</p>
+              <p class="text-white/65 text-[15px] mt-1">Itemised quote, 0% APR up to 24 months, insurance reimbursement support.</p>
+            </div>
+          </li>
+          <li class="flex gap-5">
+            <span class="display shrink-0 w-10 h-10 rounded-lg bg-[var(--amber)] text-[var(--ink)] grid place-items-center font-bold">3</span>
+            <div>
+              <p class="font-semibold">Treatment</p>
+              <p class="text-white/65 text-[15px] mt-1">Scheduled in short visits; most cases under three appointments.</p>
+            </div>
+          </li>
+          <li class="flex gap-5">
+            <span class="display shrink-0 w-10 h-10 rounded-lg bg-white text-[var(--ink)] grid place-items-center font-bold">4</span>
+            <div>
+              <p class="font-semibold">Follow-up</p>
+              <p class="text-white/65 text-[15px] mt-1">12-month guarantee on restorations, recall reminder every 6 months.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <div class="grid gap-5">
+        <div class="rounded-2xl bg-[var(--steel)] p-7">
+          <p class="display text-5xl font-extrabold text-[var(--amber)]">18,400+</p>
+          <p class="text-white/75 mt-1">Treatments completed since 2009</p>
+        </div>
+        <div class="rounded-2xl bg-[var(--bone)] text-[var(--ink)] p-7">
+          <p class="text-xs font-semibold uppercase tracking-wider text-[var(--steel)]">Patient satisfaction</p>
+          <div class="mt-4 space-y-4">
+            <div>
+              <div class="flex justify-between text-sm font-medium mb-1"><span>Care &amp; comfort</span><span>98%</span></div>
+              <div class="bar"><span style="width:98%;background:var(--teal)"></span></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-medium mb-1"><span>On-time appointments</span><span>94%</span></div>
+              <div class="bar"><span style="width:94%;background:var(--coral)"></span></div>
+            </div>
+            <div>
+              <div class="flex justify-between text-sm font-medium mb-1"><span>Would recommend</span><span>96%</span></div>
+              <div class="bar"><span style="width:96%;background:var(--amber)"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-coral">Team</p>
+      <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Who treats you</h2>
+      <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <article class="tile rounded-2xl overflow-hidden">
+          <img src="https://images.pexels.com/photos/6812461/pexels-photo-6812461.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Clinic operatory prepared for a patient" width="940" height="650" loading="lazy" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="display font-bold text-lg">Dr. Núria Bassols</h3>
+            <p class="text-sm acc-teal font-semibold mt-1">Director · Implantology</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-[var(--steel)]">
+              <li>• 18 yrs experience</li>
+              <li>• MSc Implantology</li>
+              <li>• Catalan, Spanish, English</li>
+            </ul>
+          </div>
+        </article>
+        <article class="tile rounded-2xl overflow-hidden">
+          <img src="https://images.pexels.com/photos/5355863/pexels-photo-5355863.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Modern dental unit with instruments" width="940" height="650" loading="lazy" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="display font-bold text-lg">Dr. Marc Ollé</h3>
+            <p class="text-sm acc-coral font-semibold mt-1">Orthodontics</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-[var(--steel)]">
+              <li>• Aligner specialist</li>
+              <li>• 11 yrs experience</li>
+              <li>• Invisible braces</li>
+            </ul>
+          </div>
+        </article>
+        <article class="tile rounded-2xl overflow-hidden">
+          <img src="https://images.pexels.com/photos/305567/pexels-photo-305567.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Sterile dental equipment in a bright room" width="940" height="650" loading="lazy" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="display font-bold text-lg">Dr. Aina Puig</h3>
+            <p class="text-sm acc-amber font-semibold mt-1">Endodontics</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-[var(--steel)]">
+              <li>• Microscope-assisted</li>
+              <li>• 9 yrs experience</li>
+              <li>• Pain-free protocols</li>
+            </ul>
+          </div>
+        </article>
+        <article class="tile rounded-2xl overflow-hidden">
+          <img src="https://images.pexels.com/photos/4269268/pexels-photo-4269268.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Stylish dental office with natural light" width="940" height="650" loading="lazy" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="display font-bold text-lg">Dr. Sergi Palau</h3>
+            <p class="text-sm font-semibold mt-1" style="color:var(--steel)">Cosmetic &amp; hygiene</p>
+            <ul class="mt-4 space-y-1.5 text-sm text-[var(--steel)]">
+              <li>• Smile design</li>
+              <li>• 7 yrs experience</li>
+              <li>• Whitening specialist</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLINIC -->
+  <section id="clinic" class="border-b border-[var(--line)] bg-white">
+    <div class="mx-auto max-w-6xl px-5 py-20 grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-6">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-teal">The clinic</p>
+        <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Three rooms, one sterilisation hub</h2>
+        <ul class="mt-8 space-y-4 text-[15px] text-[var(--steel)]">
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> Digital intraoral scanner — no more moulds</li>
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> Low-dose 3D imaging (CBCT) on site</li>
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> Barrier-free operatory, ground floor</li>
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> Air purification + strict EN ISO 13485 protocols</li>
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> Kids corner, headphones, sedation option</li>
+          <li class="flex gap-3"><span class="acc-coral font-bold">✓</span> 3 metro lines, 2 minutes from the clinic</li>
+        </ul>
+      </div>
+      <div class="lg:col-span-6">
+        <img src="https://images.pexels.com/photos/9062531/pexels-photo-9062531.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Bright dental clinic room with advanced equipment" width="940" height="650" loading="lazy" class="w-full h-[320px] md:h-[460px] object-cover rounded-2xl border border-[var(--line)]">
+      </div>
+    </div>
+  </section>
+
+  <!-- HOURS + LOCATION -->
+  <section id="hours" class="border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-20 grid md:grid-cols-2 gap-12">
+      <div>
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-coral">Hours &amp; location</p>
+        <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Find us</h2>
+        <table class="mt-8 w-full text-[15px]">
+          <caption class="sr-only">Weekly opening hours</caption>
+          <tbody>
+            <tr class="border-b border-[var(--line)]"><th scope="row" class="text-left font-semibold py-3">Mon – Thu</th><td class="text-right acc-teal font-semibold">08:30 – 20:00</td></tr>
+            <tr class="border-b border-[var(--line)]"><th scope="row" class="text-left font-semibold py-3">Friday</th><td class="text-right acc-teal font-semibold">08:30 – 17:00</td></tr>
+            <tr class="border-b border-[var(--line)]"><th scope="row" class="text-left font-semibold py-3">Saturday</th><td class="text-right acc-coral font-semibold">09:00 – 14:00</td></tr>
+            <tr class="border-b border-[var(--line)]"><th scope="row" class="text-left font-semibold py-3">Sunday</th><td class="text-right text-[var(--steel)]">Emergency on-call</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="rounded-2xl bg-[var(--steel)] text-white p-8">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--amber)]">Address</p>
+        <p class="display text-2xl font-extrabold mt-3">Carrer de Mallorca 142, baixos</p>
+        <p class="text-white/70 mt-1">08013 Barcelona · Catalunya</p>
+        <ul class="mt-7 space-y-3 text-[15px]">
+          <li class="flex gap-3"><span class="text-[var(--amber)]">M</span> Diagonal · Verdaguer · Passeig de Gràcia</li>
+          <li class="flex gap-3"><span class="text-[var(--amber)]">L12</span> Entenza · via Universitat</li>
+          <li class="flex gap-3"><span class="text-[var(--amber)]">B</span> Bus 47 · FGC · 2 min walk</li>
+        </ul>
+        <p class="mt-7 text-sm text-white/60">Parking: BSM Diagonal, free first hour.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="book" class="bg-white border-b border-[var(--line)]">
+    <div class="mx-auto max-w-6xl px-5 py-20 grid lg:grid-cols-12 gap-12">
+      <div class="lg:col-span-5">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-coral">Book</p>
+        <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Request an appointment</h2>
+        <ul class="mt-7 space-y-3 text-[15px] text-[var(--steel)]">
+          <li class="flex gap-3"><span class="acc-teal">✓</span> Reply within 1 working day</li>
+          <li class="flex gap-3"><span class="acc-teal">✓</span> First consultation incl. X-ray</li>
+          <li class="flex gap-3"><span class="acc-teal">✓</span> Written estimate before any treatment</li>
+          <li class="flex gap-3"><span class="acc-teal">✓</span> Cancel free up to 24 h before</li>
+        </ul>
+      </div>
+
+      <form id="bookForm" class="lg:col-span-7 tile rounded-2xl p-6 sm:p-8" novalidate>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="sm:col-span-2">
+            <label for="name" class="block text-sm font-semibold mb-2">Full name</label>
+            <input id="name" name="name" type="text" required minlength="2" maxlength="80" autocomplete="name" class="w-full border border-[var(--line)] rounded-lg px-4 py-3 focus:border-[var(--teal)] focus:outline-none" placeholder="Marta Serra">
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-semibold mb-2">Email</label>
+            <input id="email" name="email" type="email" required maxlength="120" autocomplete="email" class="w-full border border-[var(--line)] rounded-lg px-4 py-3 focus:border-[var(--teal)] focus:outline-none" placeholder="you@example.com">
+          </div>
+          <div>
+            <label for="phone" class="block text-sm font-semibold mb-2">Phone</label>
+            <input id="phone" name="phone" type="tel" required pattern="[0-9+ ]{7,20}" maxlength="20" autocomplete="tel" class="w-full border border-[var(--line)] rounded-lg px-4 py-3 focus:border-[var(--teal)] focus:outline-none" placeholder="+34 600 000 000">
+          </div>
+          <div>
+            <label for="service" class="block text-sm font-semibold mb-2">Treatment</label>
+            <select id="service" name="service" required class="w-full border border-[var(--line)] rounded-lg px-4 py-3 bg-white focus:border-[var(--teal)] focus:outline-none">
+              <option value="">Select…</option>
+              <option>Check-up &amp; hygiene</option>
+              <option>Emergency / pain</option>
+              <option>Implant</option>
+              <option>Orthodontics / aligners</option>
+              <option>Cosmetic / whitening</option>
+              <option>Crowns &amp; bridges</option>
+            </select>
+          </div>
+          <div>
+            <label for="date" class="block text-sm font-semibold mb-2">Preferred date</label>
+            <input id="date" name="date" type="date" required class="w-full border border-[var(--line)] rounded-lg px-4 py-3 focus:border-[var(--teal)] focus:outline-none">
+          </div>
+          <div class="sm:col-span-2">
+            <label for="msg" class="block text-sm font-semibold mb-2">Notes <span class="font-normal text-[var(--steel)]">(optional)</span></label>
+            <textarea id="msg" name="msg" rows="3" maxlength="500" class="w-full border border-[var(--line)] rounded-lg px-4 py-3 focus:border-[var(--teal)] focus:outline-none" placeholder="Symptoms, past treatments, insurance…"></textarea>
+          </div>
+        </div>
+        <button type="submit" class="mt-6 w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[var(--coral)] text-white font-semibold px-8 py-3.5 rounded-lg hover:bg-[var(--ink)] transition-colors">
+          Send request
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </button>
+        <p id="formMsg" role="status" aria-live="polite" class="mt-4 text-sm font-medium"></p>
+        <p class="mt-4 text-xs text-[var(--steel)]">Fictional business · no real data is transmitted or stored.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="border-b border-[var(--line)]">
+    <div class="mx-auto max-w-3xl px-5 py-20">
+      <p class="text-xs font-semibold uppercase tracking-[0.2em] acc-teal">FAQ</p>
+      <h2 class="display text-3xl md:text-4xl font-extrabold mt-2">Common questions</h2>
+      <div id="faq" class="mt-10 divide-y divide-[var(--line)] border-y border-[var(--line)]">
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold list-none">Do you accept Catalan public health coverage?
+            <span class="shrink-0 w-7 h-7 rounded-full border border-[var(--ink)] grid place-items-center transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-[15px] text-[var(--steel)]">We work privately and with most private insurers. Reimbursement paperwork is provided for each treatment.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold list-none">How long is a first appointment?
+            <span class="shrink-0 w-7 h-7 rounded-full border border-[var(--ink)] grid place-items-center transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-[15px] text-[var(--steel)]">About 45 minutes: interview, scan, X-ray and a written plan with prices.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold list-none">Are treatments painful?
+            <span class="shrink-0 w-7 h-7 rounded-full border border-[var(--ink)] grid place-items-center transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-[15px] text-[var(--steel)]">Local anaesthesia with gentle technique, plus sedation option for anxious patients.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold list-none">Can I pay in instalments?
+            <span class="shrink-0 w-7 h-7 rounded-full border border-[var(--ink)] grid place-items-center transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-[15px] text-[var(--steel)]">Yes — financing up to 24 months at 0% APR for treatments over €500.</p>
+        </details>
+        <details class="group py-5">
+          <summary class="flex items-center justify-between gap-4 cursor-pointer font-semibold list-none">Is there a guarantee?
+            <span class="shrink-0 w-7 h-7 rounded-full border border-[var(--ink)] grid place-items-center transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="mt-3 text-[15px] text-[var(--steel)]">12 months on fillings, crowns and implants; 2 years on aligners.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="bg-[var(--ink)] text-[var(--bone)]">
+  <div class="mx-auto max-w-6xl px-5 py-14">
+    <div class="grid md:grid-cols-12 gap-10">
+      <div class="md:col-span-5">
+        <div class="flex items-center gap-3">
+          <span class="w-9 h-9 grid place-items-center bg-[var(--teal)] rounded-lg" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5.5c-1.6-1.1-3.4-1.6-5.2-1.1C4.4 5 3 7.2 3 9.6c0 3.1 1 4.9 2.2 7.6.7 1.6 1.1 3.3 2.5 3.8 1.3.5 1.9-1.1 2.3-2.4.4-1.3.8-2.5 2-2.5s1.6 1.2 2 2.5c.4 1.3 1 2.9 2.3 2.4 1.4-.5 1.8-2.2 2.5-3.8C20 14.5 21 12.7 21 9.6c0-2.4-1.4-4.6-3.8-5.2-1.8-.5-3.6 0-5.2 1.1Z"/></svg>
+          </span>
+          <span class="display font-extrabold text-lg">Clínica Dental Tramuntana</span>
+        </div>
+        <p class="mt-5 text-white/65 text-[15px] max-w-sm">Fictional demo project. Brand, team, prices and patient reviews are invented for illustration.</p>
+        <ul class="mt-6 space-y-2 text-[15px] text-white/80">
+          <li>Carrer de Mallorca 142, baixos · 08013 Barcelona</li>
+          <li><a class="underline underline-offset-4 hover:text-[var(--amber)]" href="mailto:hola@clinicadentaltramuntana.cat">hola@clinicadentaltramuntana.cat</a></li>
+          <li><a class="underline underline-offset-4 hover:text-[var(--amber)]" href="tel:+34930000000">+34 93 000 00 00</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-3">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--amber)]">Sections</p>
+        <ul class="mt-4 space-y-2 text-[15px] text-white/75">
+          <li><a class="hover:text-white" href="#services">Services</a></li>
+          <li><a class="hover:text-white" href="#team">Team</a></li>
+          <li><a class="hover:text-white" href="#clinic">Clinic</a></li>
+          <li><a class="hover:text-white" href="#hours">Hours &amp; location</a></li>
+          <li><a class="hover:text-white" href="#book">Book</a></li>
+          <li><a class="hover:text-white" href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="md:col-span-4">
+        <p class="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--amber)]">Stack</p>
+        <ul class="mt-4 space-y-2 text-[15px] text-white/75">
+          <li>• HTML5 semantics + Tailwind CSS (browser CDN)</li>
+          <li>• Vanilla JS (no framework, no build)</li>
+          <li>• Sora + Inter (Google Fonts)</li>
+          <li>• Inline SVG icon set</li>
+          <li>• Pexels photography</li>
+        </ul>
+        <p class="mt-6 text-sm text-white/60">Made by Roger Pla Ballús with Claude Opus 4.5 (Anthropic)</p>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-6 border-t border-white/15 flex flex-wrap items-center justify-between gap-3 text-xs text-white/50">
+      <p>© 2026 Clínica Dental Tramuntana — demo. All rights reserved.</p>
+      <p>Made in Barcelona, Catalonia</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+  // Mobile nav toggle
+  const burger = $("#burger"), mnav = $("#mobilenav"), bicon = $("#burgerIcon");
+  burger?.addEventListener("click", () => {
+    const open = mnav.classList.toggle("hidden") === false;
+    burger.setAttribute("aria-expanded", String(open));
+    bicon.innerHTML = open
+      ? '<path d="M6 6l12 12M18 6L6 18"/>'
+      : '<path d="M4 7h16M4 12h16M4 17h16"/>';
+  });
+  $$("#mobilenav a").forEach(a => a.addEventListener("click", () => {
+    mnav.classList.add("hidden");
+    burger.setAttribute("aria-expanded", "false");
+    bicon.innerHTML = '<path d="M4 7h16M4 12h16M4 17h16"/>';
+  }));
+
+  // Reveal on scroll (IntersectionObserver, respects reduced motion)
+  const items = $$(".reveal");
+  if (items.length && "IntersectionObserver" in window &&
+      !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const io = new IntersectionObserver((es) => {
+      es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: .12 });
+    items.forEach(i => io.observe(i));
+  } else {
+    items.forEach(i => i.classList.add("in"));
+  }
+
+  // Booking form: client-side validation only (no backend)
+  const form = $("#bookForm"), msg = $("#formMsg"), dateEl = $("#date");
+  const today = new Date().toISOString().slice(0, 10);
+  if (dateEl) { dateEl.min = today; dateEl.value = today; }
+
+  form?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    const date = form.date.value;
+    const service = form.service.value;
+
+    const fail = (t) => { msg.textContent = t; msg.className = "mt-4 text-sm font-semibold text-[var(--coral)]"; };
+
+    if (name.length < 2) return fail("Please enter your full name.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) return fail("Please enter a valid email address.");
+    if (!/^[0-9+ ]{7,20}$/.test(phone)) return fail("Please enter a valid phone number (digits, + and spaces only).");
+    if (!service) return fail("Please choose a treatment.");
+    if (!date || date < today) return fail("Please pick today or a future date.");
+
+    msg.textContent = "✓ Request received (demo). We would reply within one working day.";
+    msg.className = "mt-4 text-sm font-semibold acc-teal";
+    form.reset();
+    if (dateEl) dateEl.value = today;
+  });
+})();
+</script>
+</body>
+</html>
